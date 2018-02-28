@@ -3,7 +3,9 @@ package com.csx.zookeeper.base;
 import com.sun.xml.internal.ws.api.pipe.ServerTubeAssemblerContext;
 import org.apache.zookeeper.*;
 
+import javax.crypto.spec.RC2ParameterSpec;
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -50,7 +52,7 @@ public class ZookeeperBase {
 		zk.create("/testRoot", "testRoot".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
 
         //创建子节点
-//		zk.create("/testRoot/children", "children data".getBytes(), Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+		zk.create("/testRoot/children", "children data".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
 
         //获取节点洗信息
 //		byte[] data = zk.getData("/testRoot", false, null);
@@ -67,6 +69,26 @@ public class ZookeeperBase {
         //删除节点
 //		zk.delete("/testRoot/children", -1);
 //		System.out.println(zk.exists("/testRoot/children", false));
+        List<String> list=zk.getChildren("/testRoot",false,null);
+        for(String path:list){
+            System.out.println(path);
+            String realPath="/testRoot/"+path;
+            System.out.println(new String(zk.getData(realPath,false,null)));
+        }
+//
+//        zk.delete("/testRoot", -1, new AsyncCallback.VoidCallback() {
+//            @Override
+//            public void processResult(int rc, String path, Object ctx) {
+//                try {
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                System.out.println(rc);
+//                System.out.println(path);
+//                System.out.println(ctx);
+//            }
+//        },"a");
 
         zk.close();
     }

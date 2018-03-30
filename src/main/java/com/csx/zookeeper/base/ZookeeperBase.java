@@ -48,6 +48,7 @@ public class ZookeeperBase {
         connectedSemaphore.await();
 
         System.out.println("..");
+
         //创建父节点
 		zk.create("/testRoot", "testRoot".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
 

@@ -29,7 +29,7 @@ public class Delete_API_Sync_Usage implements Watcher{
             ZooKeeper zooKeeper=new ZooKeeper(CONNECT_ADDR
                                 ,SESSION_OUTTIME
                                 ,new Delete_API_Sync_Usage());
-            System.out.println("git1");
+            System.out.println("git4");
         } catch (Exception e) {
             e.printStackTrace();
         }

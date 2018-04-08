@@ -25,6 +25,7 @@ public class Delete_API_Sync_Usage implements Watcher{
 
     public static void main(String[] args) {
         try {
+            System.out.println("git1");
             ZooKeeper zooKeeper=new ZooKeeper(CONNECT_ADDR
                                 ,SESSION_OUTTIME
                                 ,new Delete_API_Sync_Usage());
